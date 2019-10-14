@@ -1,7 +1,7 @@
 dist/
-loader/
 !www/favicon.ico
 www/
+/loader/
 
 *~
 *.sw[mnpcod]
