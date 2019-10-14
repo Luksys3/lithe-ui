@@ -55,14 +55,15 @@ export class OptionsContainer {
 			return;
 		}
 
+		if (this._searchTimeoutId !== undefined) {
+			clearTimeout(this._searchTimeoutId);
+		}
+
 		if (this._minSearchLength > this._searchText.length) {
 			this._filteredOptions = [];
 			return;
 		}
 
-		if (this._searchTimeoutId !== undefined) {
-			clearTimeout(this._searchTimeoutId);
-		}
 		this._searchTimeoutId = setTimeout(() => {
 			this.onSearchTextChange.emit(this._searchText);
 		}, 500);
