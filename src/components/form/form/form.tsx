@@ -45,8 +45,6 @@ export class Form {
 	private handleOnSubmit(event: Event) {
 		event.preventDefault();
 		this.onSubmit.emit(this._fields);
-
-		console.log('Form Submit state:', this._fields);
 	}
 
 	render() {
