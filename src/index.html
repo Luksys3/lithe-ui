@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+		/>
+		<title>Stencil Lithe-UI Components</title>
+
+		<script type="module" src="/build/lui.esm.js"></script>
+		<script nomodule src="/build/lui.js"></script>
+
+		<link
+			href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="p-8">
+			<div class="flex pb-4">
+				<div class="flex-1 px-2">
+					<lui-text-field
+						identifier="iuh34yh3uy"
+						placeholder="Your name"
+					></lui-text-field>
+				</div>
+				<div class="flex-1 px-2">
+					<lui-text-field
+						identifier="iuh34yh3uy"
+						placeholder="Your name"
+						value="Josh"
+					></lui-text-field>
+				</div>
+			</div>
+			<div class="flex pb-8">
+				<div class="flex-1 px-2">
+					<lui-text-field
+						identifier="iuh34yh3uy"
+						placeholder="Your name"
+						blocked="true"
+					></lui-text-field>
+				</div>
+				<div class="flex-1 px-2">
+					<lui-text-field
+						identifier="iuh34yh3uy"
+						placeholder="Your name"
+						value="Josh"
+						blocked="true"
+					></lui-text-field>
+				</div>
+			</div>
+
+			<div class="flex pb-4">
+				<div class="flex-1 px-2">
+					<lui-select-field
+						identifier="iuh34yh3uy"
+						placeholder="Your gender"
+					></lui-select-field>
+				</div>
+				<div class="flex-1 px-2">
+					<lui-select-field
+						identifier="48ef4we9f4"
+						placeholder="Your gender"
+					></lui-select-field>
+				</div>
+			</div>
+
+			<div class="flex pb-8">
+				<div class="flex-1 px-2">
+					<lui-select-field
+						identifier="iuh34yh3uy"
+						placeholder="Your gender"
+						blocked="true"
+					></lui-select-field>
+				</div>
+				<div class="flex-1 px-2">
+					<lui-select-field
+						identifier="48ef4we9f4"
+						placeholder="Your gender"
+						blocked="true"
+					></lui-select-field>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			const selectFields = document.querySelectorAll('lui-select-field');
+			selectFields[0].options = [
+				{
+					identifier: 'male',
+					name: 'Male'
+				},
+				{
+					identifier: 'female',
+					name: 'Female'
+				}
+			];
+
+			selectFields[1].options = [
+				{
+					identifier: 'male',
+					name: 'Male'
+				},
+				{
+					identifier: 'female',
+					name: 'Female'
+				}
+			];
+			selectFields[1].value = {
+				identifier: 'male',
+				name: 'Male'
+			};
+
+			selectFields[2].options = [];
+
+			selectFields[3].options = [];
+			selectFields[3].value = {
+				identifier: 'male',
+				name: 'Male'
+			};
+		</script>
+	</body>
+</html>
