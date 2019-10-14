@@ -1,15 +1,18 @@
 import {
 	Component,
-	h,
-	Prop,
-	State,
-	Host,
 	Event,
 	EventEmitter,
+	Host,
+	Listen,
+	Prop,
+	State,
 	Watch,
-	Listen
+	h
 } from '@stencil/core';
+import 'wc-air-datepicker';
+
 import { BaseField } from '../helpers/BaseField';
+import { ClearFieldButton } from '../helpers/ClearFieldButton';
 import { IOnChange } from '../helpers/IOnChange';
 
 @Component({
@@ -18,12 +21,17 @@ import { IOnChange } from '../helpers/IOnChange';
 export class DatepickerField {
 	@Prop() identifier!: string;
 	@Prop() placeholder!: string;
+	@Prop() value = '';
 	@Prop() required = true;
-	@Prop() value: string = '';
+	@Prop() blocked = false;
 
 	@State() _value!: string;
 
 	@Event() onChange!: EventEmitter<IOnChange>;
+
+	componentWillLoad() {
+		this.handleChange(this.value);
+	}
 
 	@Watch('value')
 	handleValueChange(value: string, oldValue: string) {
@@ -40,8 +48,10 @@ export class DatepickerField {
 		this.handleChange(event.detail.formattedDate);
 	}
 
-	componentWillLoad() {
-		this.handleChange(this.value);
+	@Listen('onClearClick')
+	handleOnClearClick(event: CustomEvent) {
+		event.stopPropagation();
+		this._value = '';
 	}
 
 	private handleChange(value: string) {
@@ -56,7 +66,11 @@ export class DatepickerField {
 	render() {
 		return (
 			<Host class="block">
-				<BaseField placeholder={this.placeholder} focused={this._value !== ''}>
+				<BaseField
+					placeholder={this.placeholder}
+					focused={this._value !== ''}
+					blocked={this.blocked}
+				>
 					<air-datepicker
 						autoClose={true}
 						dateFormat="yyyy-mm-dd"
@@ -69,6 +83,8 @@ export class DatepickerField {
 							value={this._value}
 							readOnly={true}
 						/>
+
+						{this._value !== '' && <ClearFieldButton />}
 					</air-datepicker>
 				</BaseField>
 

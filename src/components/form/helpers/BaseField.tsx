@@ -21,7 +21,7 @@ export const BaseField: FunctionalComponent<{
 			{children}
 
 			{blocked && (
-				<div class="absolute inset-0 bg-gray-400 opacity-25 z-10 rounded cursor-not-allowed"></div>
+				<div class="absolute inset-0 bg-gray-400 opacity-25 z-10 rounded cursor-not-allowed" />
 			)}
 		</div>
 	);

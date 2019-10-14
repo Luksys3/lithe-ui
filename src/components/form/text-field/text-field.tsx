@@ -1,13 +1,14 @@
 import {
 	Component,
-	h,
-	Prop,
-	State,
-	Host,
 	Event,
 	EventEmitter,
-	Watch
+	Host,
+	Prop,
+	State,
+	Watch,
+	h
 } from '@stencil/core';
+
 import { BaseField } from '../helpers/BaseField';
 import { IOnChange } from '../helpers/IOnChange';
 

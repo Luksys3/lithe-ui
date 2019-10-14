@@ -1,15 +1,17 @@
 import {
 	Component,
-	h,
-	Prop,
-	State,
 	Event,
 	EventEmitter,
+	Host,
 	Listen,
+	Prop,
+	State,
 	Watch,
-	Host
+	h
 } from '@stencil/core';
+
 import { IOption } from '../select-field/IOption';
+
 import { IOnSelect } from './IOnSelect';
 
 @Component({ tag: 'lui-options-container' })

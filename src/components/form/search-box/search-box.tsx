@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Method } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, Method, Prop, h } from '@stencil/core';
 
 @Component({
 	tag: 'lui-search-box'

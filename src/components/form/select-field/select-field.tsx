@@ -1,19 +1,22 @@
 import {
 	Component,
-	h,
+	Element,
+	Event,
+	EventEmitter,
 	Host,
+	Listen,
 	Prop,
 	State,
-	Event,
 	Watch,
-	Listen,
-	Element,
-	EventEmitter
+	h
 } from '@stencil/core';
+
 import { BaseField } from '../helpers/BaseField';
-import { IOption } from './IOption';
-import { IOnSelect } from '../options-container/IOnSelect';
+import { ClearFieldButton } from '../helpers/ClearFieldButton';
 import { IOnChange } from '../helpers/IOnChange';
+import { IOnSelect } from '../options-container/IOnSelect';
+
+import { IOption } from './IOption';
 
 @Component({
 	tag: 'lui-select-field'
@@ -53,14 +56,6 @@ export class SelectField {
 		);
 	}
 
-	@Listen('onSelect')
-	handleOnSelect(event: CustomEvent<IOnSelect>) {
-		event.stopPropagation();
-
-		this._value = this.findOption(event.detail.identifier);
-		this._open = false;
-	}
-
 	@Watch('value')
 	handleValueChange(value: IOption | null, oldValue: IOption | null) {
 		if (value !== oldValue || JSON.stringify(value) !== JSON.stringify(oldValue)) {
@@ -94,14 +89,24 @@ export class SelectField {
 		}
 	}
 
+	@Listen('onSelect')
+	handleOnSelect(event: CustomEvent<IOnSelect>) {
+		event.stopPropagation();
+
+		this._value = this.findOption(event.detail.identifier);
+		this._open = false;
+	}
+
+	@Listen('onClearClick')
+	handleOnClearClick(event: CustomEvent) {
+		event.stopPropagation();
+		this._value = null;
+	}
+
 	private handleOnClick() {
 		if (!this.blocked) {
 			this._open = !this._open;
 		}
-	}
-
-	private handleOnClearClick() {
-		this._value = null;
 	}
 
 	private handleClickOutside(event: MouseEvent) {
@@ -116,14 +121,6 @@ export class SelectField {
 	}
 
 	render() {
-		const clearButton = (
-			<div
-				class="h-full pr-4 absolute flex top-0 right-0 z-10 text-gray-800 text-lg select-none cursor-pointer hover:text-gray-600"
-				onClick={() => this.handleOnClearClick()}
-			>
-				<div class="m-auto pr-px">&times;</div>
-			</div>
-		);
 		const optionsContainer = (
 			<lui-options-container
 				showSearch={this.showSearch}
@@ -163,7 +160,7 @@ export class SelectField {
 						onClick={() => this.handleOnClick()}
 					/>
 
-					{this._value !== null && clearButton}
+					{this._value !== null && <ClearFieldButton />}
 
 					<div class="relative w-full h-0 overflow-hidden">
 						<select
@@ -178,7 +175,7 @@ export class SelectField {
 								this.required && !this.blocked && this._value === null
 							}
 						>
-							<option value=""></option>
+							<option value=""/>
 						</select>
 					</div>
 				</BaseField>

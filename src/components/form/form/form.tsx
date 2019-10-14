@@ -1,14 +1,16 @@
 import {
 	Component,
-	h,
-	Listen,
-	State,
 	Event,
 	EventEmitter,
-	Method
+	Listen,
+	Method,
+	State,
+	h
 } from '@stencil/core';
-import { IFields } from './IFields';
+
 import { IOnChange } from '../helpers/IOnChange';
+
+import { IFields } from './IFields';
 
 @Component({
 	tag: 'lui-form'
