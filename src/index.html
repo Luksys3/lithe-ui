@@ -16,7 +16,7 @@
 			rel="stylesheet"
 		/>
 	</head>
-	<body>
+	<body style="background: #F6F6F6;">
 		<div class="p-8">
 			<div class="flex pb-8">
 				<div class="flex-1 px-2">
@@ -74,6 +74,50 @@
 					<lui-emojis>Choose emoji</lui-emojis>
 				</div>
 			</div>
+		</div>
+
+		<div class="fixed bottom-0 right-0 flex">
+			<lui-chat class="mr-10" minimized>
+				<div slot="name">
+					Ivana Fedorova
+				</div>
+
+				<div slot="status">
+					Active
+				</div>
+
+				<div
+					slot="image"
+					class="w-8 h-8 bg-blue-500 bg-cover bg-no-repeat bg-center rounded-full"
+				></div>
+
+				<lui-chat-message time="09:34">Hi Marina</lui-chat-message>
+				<lui-chat-message me  time="09:34">Hello!!</lui-chat-message>
+				<lui-chat-message time="09:34">How was you yesterday?</lui-chat-message time="09:34">
+			</lui-chat>
+
+			<lui-chat class="mr-20">
+				<div slot="name">
+					Ivana Fedorova
+				</div>
+
+				<div slot="status">
+					Active
+				</div>
+
+				<div
+					slot="image"
+					class="w-8 h-8 bg-blue-500 bg-cover bg-no-repeat bg-center rounded-full"
+				></div>
+
+				<lui-chat-message time="09:34">Hi Marina</lui-chat-message>
+				<lui-chat-message me  time="09:34">Hello!!</lui-chat-message>
+				<lui-chat-message time="09:34">How was you yesterday?</lui-chat-message time="09:34">
+				<lui-chat-splitter>17 October 2018</lui-chat-splitter>
+				<lui-chat-message me time="09:34">It was okay</lui-chat-message>
+				<lui-chat-message time="09:34">You wanna hangout today?</lui-chat-message time="09:34">
+				<lui-chat-message me time="09:34" sending>Suree. When do you want to go?</lui-chat-message>
+			</lui-chat class="mr-20">
 		</div>
 
 		<script>
