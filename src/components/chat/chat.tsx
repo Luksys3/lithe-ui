@@ -14,8 +14,6 @@ import {
 	tag: 'lui-chat'
 })
 export class Chat {
-	@Prop() name!: string;
-	@Prop() image!: string;
 	@Prop() activeText = '';
 	@Prop() inputPlaceholder = 'Your message here...';
 	@Prop() inputValue = '';
@@ -143,10 +141,10 @@ export class Chat {
 				<div>
 					<slot name="image" />
 				</div>
-				<div class="flex-1 pl-2 pr-3 leading-tight">
-					<span class="text-gray-700 text-sm">
+				<div class="flex-1 pl-2 pr-3 leading-tight truncate">
+					<div class="text-gray-700 text-sm truncate">
 						<slot name="name" />
-					</span>
+					</div>
 					<div class="text-gray-600 text-xs">
 						<slot name="status" />
 					</div>
@@ -217,9 +215,12 @@ export class Chat {
 
 		return (
 			<Host
-				class="mt-auto rounded-t-lg bg-white shadow-md"
+				class={{
+					'mt-auto rounded-t-lg bg-white shadow-md': true,
+					'w-full': !this._minimized
+				}}
 				style={{
-					width: this._minimized ? 'auto' : '16.25rem'
+					maxWidth: '260px'
 				}}
 			>
 				{header}
