@@ -13,6 +13,7 @@ import {
 import { IOption } from '../select-field/IOption';
 
 import { IOnSelect } from './IOnSelect';
+import { IOnSearchChange } from '../search-box/IOnSearchChange';
 
 @Component({ tag: 'lui-options-container' })
 export class OptionsContainer {
@@ -46,10 +47,15 @@ export class OptionsContainer {
 	}
 
 	@Listen('onSearchChange')
-	handleOnChange(event: CustomEvent<string>) {
+	handleOnChange(event: CustomEvent<IOnSearchChange>) {
+		const { identifier, value } = event.detail;
+		if (identifier === 'options-search') {
+			return;
+		}
+
 		event.stopPropagation();
 
-		this._searchText = event.detail;
+		this._searchText = value;
 		if (!this.eventBasedSearch) {
 			this._filteredOptions = this.filterOptions(this._options, this._searchText);
 			return;
@@ -113,6 +119,7 @@ export class OptionsContainer {
 							this._searchBox = node;
 						}
 					}}
+					identifier="options-search"
 				/>
 			</div>
 		);

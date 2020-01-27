@@ -1,13 +1,16 @@
 import { Component, Event, EventEmitter, Host, Method, Prop, h } from '@stencil/core';
 
+import { IOnSearchChange } from './IOnSearchChange';
+
 @Component({
 	tag: 'lui-search-box'
 })
 export class SearchBox {
+	@Prop() identifier!: string;
 	@Prop() placeholder = 'Search...';
 	@Prop() delay = 0;
 
-	@Event() onSearchChange!: EventEmitter<string>;
+	@Event() onSearchChange!: EventEmitter<IOnSearchChange>;
 
 	private _input!: HTMLInputElement;
 
@@ -17,7 +20,7 @@ export class SearchBox {
 	}
 
 	private handleOnChange(value: string) {
-		this.onSearchChange.emit(value);
+		this.onSearchChange.emit({ identifier: this.identifier, value });
 	}
 
 	render() {
