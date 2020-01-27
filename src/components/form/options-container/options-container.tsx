@@ -49,7 +49,7 @@ export class OptionsContainer {
 	@Listen('onSearchChange')
 	handleOnChange(event: CustomEvent<IOnSearchChange>) {
 		const { identifier, value } = event.detail;
-		if (identifier === 'options-search') {
+		if (identifier !== 'options-search') {
 			return;
 		}
 
