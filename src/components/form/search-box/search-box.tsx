@@ -8,6 +8,7 @@ import { IOnSearchChange } from './IOnSearchChange';
 export class SearchBox {
 	@Prop() identifier!: string;
 	@Prop() placeholder = 'Search...';
+	@Prop() value = '';
 	@Prop() delay = 0;
 
 	@Event() onSearchChange!: EventEmitter<IOnSearchChange>;
@@ -35,6 +36,7 @@ export class SearchBox {
 					class="w-full h-full pl-2 pr-8 py-2 bg-white text-sm rounded border border-gray-300 text-gray-800 outline-none"
 					type="text"
 					placeholder={this.placeholder}
+					value={this.value}
 					onInput={(event: Event) =>
 						this.handleOnChange((event as any).target.value)
 					}
