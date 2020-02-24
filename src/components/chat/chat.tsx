@@ -67,11 +67,32 @@ export class Chat {
 	@Method()
 	async minimize() {
 		this._minimized = true;
+
+		requestAnimationFrame(() => {
+			this.onMinimize.emit();
+		});
 	}
 
 	@Method()
 	async maximize() {
 		this._minimized = false;
+
+		requestAnimationFrame(() => {
+			this.onMaximize.emit();
+		});
+	}
+
+	@Method()
+	async focusInput() {
+		if (!this._minimized) {
+			this._inputElement.focus();
+			return;
+		}
+
+		await this.maximize();
+		requestAnimationFrame(() => {
+			this._inputElement.focus();
+		});
 	}
 
 	private handleDOMChange() {
@@ -170,11 +191,9 @@ export class Chat {
 						this._messagesElement = node;
 					}
 				}}
-				class="flex border-b border-gray-300 h-64 overflow-y-auto"
+				class="pt-2 border-b border-gray-300 h-64 overflow-y-auto"
 			>
-				<div class="w-full pt-2 mt-auto">
-					<slot />
-				</div>
+				<slot />
 			</div>,
 
 			<div class="flex items-center">
@@ -216,10 +235,11 @@ export class Chat {
 		return (
 			<Host
 				class={{
-					'mt-auto rounded-t-lg bg-white shadow-md': true,
+					'flex flex-col mt-auto rounded-t-lg bg-white shadow-md': true,
 					'w-full': !this._minimized
 				}}
 				style={{
+					minWidth: this._minimized ? 'auto' : '260px',
 					maxWidth: '260px'
 				}}
 			>

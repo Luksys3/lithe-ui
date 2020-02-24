@@ -13,7 +13,7 @@ export class ChatMessage {
 
 	render() {
 		return (
-			<Host class="flex px-2 pb-3">
+			<Host class="flex px-2 pb-1">
 				{this.me && <div class="flex-1" />}
 
 				<div class="flex">

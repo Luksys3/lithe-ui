@@ -10,10 +10,10 @@ import {
 	h
 } from '@stencil/core';
 
+import { IOnSearchChange } from '../search-box/IOnSearchChange';
 import { IOption } from '../select-field/IOption';
 
 import { IOnSelect } from './IOnSelect';
-import { IOnSearchChange } from '../search-box/IOnSearchChange';
 
 @Component({ tag: 'lui-options-container' })
 export class OptionsContainer {
