@@ -175,7 +175,7 @@ export class SelectField {
 								this.required && !this.blocked && this._value === null
 							}
 						>
-							<option value=""/>
+							<option value="" />
 						</select>
 					</div>
 				</BaseField>

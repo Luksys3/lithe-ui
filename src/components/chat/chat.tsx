@@ -10,20 +10,26 @@ import {
 	h
 } from '@stencil/core';
 
+import { Typing } from './helpers/Typing';
+
 @Component({
-	tag: 'lui-chat'
+	tag: 'lui-chat',
+	assetsDirs: ['assets']
 })
 export class Chat {
 	@Prop() activeText = '';
 	@Prop() inputPlaceholder = 'Your message here...';
 	@Prop() inputValue = '';
 	@Prop() minimized = false;
+	@Prop() typing = false;
+	@Prop() typingImage = 'typing.gif';
 
 	@State() _minimized = false;
 
 	@Event() onClose!: EventEmitter;
 	@Event() onMinimize!: EventEmitter;
 	@Event() onMaximize!: EventEmitter;
+	@Event() onTyping!: EventEmitter;
 	@Event() onSendMessage!: EventEmitter<{ message: string; success: () => void }>;
 
 	@Element() element!: HTMLLuiChatElement;
@@ -194,6 +200,17 @@ export class Chat {
 				class="pt-2 border-b border-gray-300 h-64 overflow-y-auto"
 			>
 				<slot />
+
+				{this.typing && (
+					<lui-chat-message key="typing">
+						<Typing
+							style={{
+								height: '18px',
+								padding: '5px 3px'
+							}}
+						/>
+					</lui-chat-message>
+				)}
 			</div>,
 
 			<div class="flex items-center">
@@ -212,6 +229,7 @@ export class Chat {
 					placeholder={this.inputPlaceholder}
 					value={this.inputValue}
 					onKeyUp={(event: KeyboardEvent) => this.handleKeyUp(event)}
+					onChange={() => this.onTyping.emit()}
 				/>
 				<div
 					class="h-full px-2 cursor-pointer text-gray-500 hover:text-gray-600"

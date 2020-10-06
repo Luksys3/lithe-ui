@@ -22,7 +22,7 @@
 		"tslint:fix": "tslint --project . --fix"
 	},
 	"devDependencies": {
-		"@stencil/core": "^1.3.3",
+		"@stencil/core": "1.3.3",
 		"@types/node": "^12.7.12",
 		"tslint": "^5.20.0",
 		"tslint-ionic-rules": "0.0.21",
